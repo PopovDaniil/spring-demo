@@ -4,8 +4,8 @@ spring:
     name: demo
   datasource:
     url: "jdbc:postgresql://localhost:5432/data"
-    username: "hotline"
-    password: "devpass"
+    username: "postgres"
+    password: "posrgres"
   jpa:
     hibernate:
       ddl-auto: update
