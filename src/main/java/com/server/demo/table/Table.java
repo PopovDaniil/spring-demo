@@ -6,6 +6,7 @@ import org.hibernate.annotations.NaturalId;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.server.demo.field.Field;
+import com.server.demo.field.Field_;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
