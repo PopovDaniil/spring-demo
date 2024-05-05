@@ -1,0 +1,32 @@
+GET http://localhost:8080/table/
+###
+POST http://localhost:8080/table/
+Content-Type: application/json
+
+{
+    "name": "table1",
+    "fields": [
+        {
+            "name": "name"
+        },
+        {
+            "name": "value"
+        }
+    ]
+}
+###
+GET http://localhost:8080/table/table1
+###
+POST http://localhost:8080/table/table1/apply
+
+###
+POST http://localhost:8080/table/table1/revert
+
+###
+POST http://localhost:8080/table/table1/call
+Content-Type: application/json
+
+{
+    "name": "GetList",
+    "params": {}
+}
