@@ -17,9 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.lang.NonNull;
 
-import com.server.demo.field.Field;
 import com.server.demo.table.Table;
 import com.zaxxer.hikari.util.DriverDataSource;
 
@@ -36,9 +34,9 @@ class DemoApplicationTests {
 	@Value("${spring.datasource.url}")
 	private static String jdbcUrl = "jdbc:postgresql://localhost:5432/data";
 	@Value("${spring.datasource.username}")
-	private static String jdbcUser = "hotline";
+	private static String jdbcUser = "postgres";
 	@Value("${spring.datasource.password}")
-	private static String jdbcPass = "devpass";
+	private static String jdbcPass = "postgres";
 
 	private static JdbcTemplate dbConnection = new JdbcTemplate(
 			new DriverDataSource(jdbcUrl, "postgres", new Properties(), jdbcUser, jdbcPass));
@@ -56,7 +54,7 @@ class DemoApplicationTests {
 	@BeforeAll()
 	static void cleanDB() {
 		dbConnection.execute("TRUNCATE \"table\" CASCADE;");
-		dbConnection.execute("DROP TABLE " + fullTableName);
+		dbConnection.execute(String.format("DROP TABLE IF EXISTS \"%s\";", fullTableName));
 	}
 
 	@BeforeAll()
