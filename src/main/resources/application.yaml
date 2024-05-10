@@ -4,13 +4,14 @@ spring:
     name: demo
   datasource:
     url: "jdbc:postgresql://localhost:5432/data"
-    username: "postgres"
-    password: "posrgres"
+    username: "hotline"
+    password: "devpass"
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         "[globally_quoted_identifiers]": "true"
         "[show_sql]": "true"
         "[format_sql]": "true"
