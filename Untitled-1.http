@@ -30,3 +30,15 @@ Content-Type: application/json
     "name": "GetList",
     "params": {}
 }
+
+###
+POST http://localhost:8080/table/table1/call
+Content-Type: application/json
+
+{
+    "name": "Add",
+    "params": {
+        "name": "a",
+        "value": "b"
+    }
+}

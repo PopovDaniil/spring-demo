@@ -64,5 +64,4 @@ public class Field {
             return false;
         return true;
     }
-
 }

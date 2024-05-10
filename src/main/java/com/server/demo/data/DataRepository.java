@@ -5,11 +5,15 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import org.jboss.logging.Log4j2LoggerProvider;
+import org.jboss.logging.Logger;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
-import com.server.demo.data.common.*;
-import com.server.demo.data.errors.*;
+import com.server.demo.data.common.Command;
+import com.server.demo.data.common.CommandHandlerParametrized;
+import com.server.demo.data.common.CommandHandlerWithoutParams;
+import com.server.demo.data.errors.CommandExecutingError;
 import com.server.demo.field.Field;
 import com.server.demo.table.Table;
 
@@ -17,8 +21,11 @@ import com.server.demo.table.Table;
 public class DataRepository {
     JdbcClient client;
 
+    Logger logger;
+
     DataRepository(JdbcClient client) {
         this.client = client;
+        this.logger = new Log4j2LoggerProvider().getLogger("DataRepository");
     }
 
     public void createTable(Table tableEntity) {
@@ -49,9 +56,11 @@ public class DataRepository {
             if (commandHandler instanceof CommandHandlerWithoutParams) {
                 return ((CommandHandlerWithoutParams<?>) commandHandler).handle();
             } else if (commandHandler instanceof CommandHandlerParametrized) {
-                return ((CommandHandlerParametrized<?>) commandHandler).handle(command.getParams());
+                return ((CommandHandlerParametrized<?, ?>) commandHandler)
+                        .handleAndTransformParams(command.getParams());
             }
         } catch (Exception e) {
+            this.logger.error(e.toString());
             return new CommandExecutingError(e.getMessage());
         }
         throw new InvalidParameterException();

@@ -18,6 +18,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.server.demo.data.common.Command;
+import com.server.demo.field.Field;
 import com.server.demo.table.Table;
 import com.zaxxer.hikari.util.DriverDataSource;
 
@@ -102,5 +104,14 @@ class DemoApplicationTests {
 		assertThat(res.getStatusCode().value()).isEqualTo(200);
 		var createdTable = dbConnection.queryForList("SELECT * FROM " + fullTableName);
 		assertThat(createdTable).isNotNull();
+	}
+
+	@Test
+	@Order(5)
+	void shouldCallGetListCommand() {
+		String url = getUrl("table/" + tableName + "/call");
+		Command params = new Command("GetList");
+		var res = (Object[]) this.restTemplate.postForObject(url, params, Object.class.arrayType());
+		assertThat(res.length).isEqualTo(0);
 	}
 }

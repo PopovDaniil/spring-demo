@@ -43,6 +43,11 @@ public class Table {
         return tableNamePrefix + "_" + name;
     }
 
+    public String getFieldsList() {
+        String[] list = fields.stream().map(field -> field.getName()).toArray(String[]::new);
+        return String.join(", ", list);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
