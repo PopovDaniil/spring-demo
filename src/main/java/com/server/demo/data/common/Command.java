@@ -1,10 +1,10 @@
 package com.server.demo.data.common;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Command {
     private String name;
-    private HashMap<String, String> params;
+    private Map<String, String> params;
 
     public Command() {
     }
@@ -13,7 +13,7 @@ public class Command {
         this.name = name;
     }
 
-    public Command(String name, HashMap<String, String> params) {
+    public Command(String name, Map<String, String> params) {
         this.name = name;
         this.params = params;
     }
@@ -22,7 +22,7 @@ public class Command {
         return this.name;
     }
 
-    public HashMap<String, String> getParams() {
+    public Map<String, String> getParams() {
         return this.params;
     };
 

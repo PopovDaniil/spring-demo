@@ -20,7 +20,7 @@ public class Table {
 
     @Id
     @GeneratedValue
-    private Long id;
+    public Long id;
     @NaturalId
     public String name;
 

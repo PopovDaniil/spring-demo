@@ -20,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.postgresql:postgresql:42.7.3'
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'com.google.code.findbugs:jsr305:3.0.2' // fix warning: unknown enum constant When.MAYBE
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

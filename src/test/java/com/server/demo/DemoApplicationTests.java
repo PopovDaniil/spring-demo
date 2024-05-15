@@ -2,6 +2,8 @@ package com.server.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
 import java.util.Properties;
 
@@ -113,5 +115,23 @@ class DemoApplicationTests {
 		Command params = new Command("GetList");
 		var res = (Object[]) this.restTemplate.postForObject(url, params, Object.class.arrayType());
 		assertThat(res.length).isEqualTo(0);
+	}
+
+	@Test
+	@Order(6)
+	void shouldCallAddCommand() {
+		String url = getUrl("table/" + tableName + "/call");
+		Command params = new Command("Add", Map.of("name", "field", "value", "2"));
+		var res = this.restTemplate.postForObject(url, params, Object.class);
+		// assertThat(res.length).isEqualTo(0);
+	}
+
+	@Test
+	@Order(7)
+	void shouldCallGetListCommandAfterAdd() {
+		String url = getUrl("table/" + tableName + "/call");
+		Command params = new Command("GetList");
+		var res = (Object[]) this.restTemplate.postForObject(url, params, Object.class.arrayType());
+		assertThat(res.length).isEqualTo(1);
 	}
 }

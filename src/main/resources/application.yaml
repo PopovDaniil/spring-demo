@@ -16,8 +16,11 @@ spring:
         "[show_sql]": "true"
         "[format_sql]": "true"
         "[highlight_sql]": "true"
+  mustache:
+    prefix: classpath:/templates/
+    suffix: .html
 logging:
   level:
-    root: "info"
+    root: "debug"
   charset:
     console: "utf-8"

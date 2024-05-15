@@ -18,10 +18,4 @@ public class GetListCommandHandler extends CommandHandlerWithoutParams<List<Map<
     public List<Map<String, Object>> handle() {
         return this.db.sql(String.format("SELECT * FROM %s", tableEntity.getFullName())).query().listOfRows();
     }
-
-    @Override
-    protected String getCommandName() {
-        return "GetList";
-    }
-
 }

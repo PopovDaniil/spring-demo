@@ -27,17 +27,7 @@ public class AddCommandHandler extends CommandHandlerParametrized<AddCommandPara
     }
 
     @Override
-    protected String getCommandName() {
-        return "Create";
-    }
-
-    @Override
     public AddCommandParams paramsFromMap(Map<String, String> paramsMap) {
         return new AddCommandParams(paramsMap);
     }
-
-    // private String paramToSql(String name, Object value) {
-    // return this.db.
-    // }
-
 }
